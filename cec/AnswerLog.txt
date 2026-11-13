@@ -1,0 +1,59 @@
+
+====================
+Request ID = 0c4a18d17eb7432b8e1cb2e80874e53c
+Time = 2026-11-13 16:37:53 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental college, bangalore BDS NRI fees**
+
+<CM> **Answer:**
+**RV Dental College, Bangalore – BDS (NRI Quota) Tuition Fee**
+
+| Category | Tuition fee (per year) |
+|----------|------------------------|
+| NRI Quota | **₹ 586,950** per year |
+
+*The fee listed for the NRI quota is the same as the Private/Other quota.*  
+
+*Source: CareerMudhra – “RV Dental College Bangalore Fees, Admission, Review” (BDS Fees table).*
+
+If you need a breakdown of additional costs (hostel, mess, etc.) or the total cost for the entire 4‑year program, that information is not provided in the available material. You may contact the college directly for the most up‑to‑date and detailed fee structure.
+====================
+
+====================
+Request ID = 239fd6824aa84f31a8dc678a7d17ddac
+Time = 2026-11-13 16:39:57 India Standard Time
+Status = Success
+--------------------
+<USER> **East Point Medical college NRI Fees MD Radiology**
+
+<CM> **Answer:**
+**NRI fee for MD – Radio Diagnosis (Radiology) at East Point Medical College, Bangalore**
+
+- **Amount:** **₹ 1,15,15,750** per year (NRI quota)
+
+*Source:* The MD/MS Fees table lists “MD – Radio Diagnosis” with an NRI fee of 1,15,15,750 ₹【table9】.
+====================
+
+====================
+Request ID = 325a2f67933e433a861a3a3ed31dff1b
+Time = 2026-11-13 16:41:46 India Standard Time
+Status = Success
+--------------------
+<USER> **is this just the college fee or does it include hostels, travel, and other expences?**
+
+<CM> **Answer:**
+**Answer**
+
+The fee figures shown for the academic programmes (e.g., **₹2,15,000 for BDS** and **₹4,00,000 – ₹7,09,000 per year for MDS**) refer only to the **college/tuition fee**.  
+
+- **Hostel charges are listed separately** in the “Uttaranchal Dental College Hostel Fees” table:  
+  * Non‑A/C single occupancy – ₹1,50,000 per year  
+  * Non‑A/C double occupancy – ₹80,000 per year  
+  * A/C single occupancy – ₹2,00,000 per year  
+  * A/C double occupancy – ₹1,20,000 per year  
+
+- The page also mentions that **students have additional expenses** such as living costs, travel, and stationery, but these are **not included** in the tuition fee figures.
+
+**Therefore, the quoted college fee does not cover hostel accommodation, travel, or other miscellaneous expenses.** Those costs need to be budgeted separately.
+====================
