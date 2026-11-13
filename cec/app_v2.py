@@ -36,7 +36,6 @@ from groq import Groq
 from spyder.query_extractor import extract_keywords
 from spyder.query_spider import (
     search_and_crawl,
-    cleanup_request,
     cleanup_stale_temp,
 )
 
@@ -153,26 +152,6 @@ def schedule_stale_cleanup():
             CLEANUP_IDLE_SECONDS,
         )
 
-
-@app.after_request
-def schedule_cleanup_after_chat_response(response):
-    """
-    Schedule cleanup after a successful chat response has been
-    fully consumed and closed by the WSGI server.
-    """
-
-    if (
-        request.endpoint == "chat"
-        and response.status_code == 200
-    ):
-
-        response.call_on_close(
-            schedule_stale_cleanup
-        )
-
-    return response
-
-
 # -------------------------------------------------------------------
 # Logging
 # -------------------------------------------------------------------
@@ -196,6 +175,23 @@ app = Flask(
 
 app.config["MAX_CONTENT_LENGTH"] = 64 * 1024
 
+@app.after_request
+def schedule_cleanup_after_chat_response(response):
+    """
+    Schedule cleanup after a successful chat response has been
+    fully consumed and closed by the WSGI server.
+    """
+
+    if (
+        request.endpoint == "chat"
+        and response.status_code == 200
+    ):
+
+        response.call_on_close(
+            schedule_stale_cleanup
+        )
+
+    return response
 
 # -------------------------------------------------------------------
 # Groq client
