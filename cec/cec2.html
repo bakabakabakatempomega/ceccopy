@@ -1,0 +1,446 @@
+from pathlib import Path
+import zipfile, textwrap
+
+outdir = Path("/mnt/data/careermudhra-groq-demo")
+outdir.mkdir(parents=True, exist_ok=True)
+
+html = r'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareerMudhra AI Assistant</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #000207;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --soft: #f8fafc;
+      --accent: #131314;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+    }
+    .app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      max-width: 900px;
+      margin: 0 auto;
+      border-inline: 1px solid #f1f1f1;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 750;
+    }
+    header h1 { margin: 0; font-size: 16px; font-weight: 650; }
+    header p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .source {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .source:hover { color: var(--accent); }
+    #chat {
+      flex: 1;
+      padding: 28px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .welcome {
+      margin: auto;
+      max-width: 480px;
+      text-align: center;
+      padding: 35px 12px;
+    }
+    .welcome .spark { font-size: 28px; color: var(--accent); }
+    .welcome h2 { font-size: 25px; letter-spacing: -.6px; margin: 8px 0; }
+    .welcome p { color: var(--muted); margin: 0 auto 20px; max-width: 390px; }
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .suggestions button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: #374151;
+      cursor: pointer;
+    }
+    .suggestions button:hover { border-color: #93c5fd; background: #f8fbff; }
+    .msg { display: flex; gap: 10px; max-width: 100%; align-items: flex-start; }
+    .msg.user { justify-content: flex-end; }
+    .bubble {
+      max-width: min(720px, 88%);
+      padding: 12px 15px;
+      border-radius: 16px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .assistant .bubble {
+      background: var(--soft);
+      border: 1px solid #eef0f3;
+      border-top-left-radius: 5px;
+    }
+    .user .bubble {
+      background: var(--accent);
+      color: white;
+      border-top-right-radius: 5px;
+    }
+    .avatar {
+      flex: 0 0 28px;
+      height: 28px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--accent);
+    }
+    .user .avatar { order: 2; background: #e5e7eb; color: #374151; }
+    .composer-wrap {
+      position: sticky;
+      bottom: 0;
+      background: rgba(255,255,255,.96);
+      border-top: 1px solid var(--line);
+      padding: 14px 22px 10px;
+    }
+    .composer {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      border: 1px solid #d1d5db;
+      border-radius: 16px;
+      padding: 8px;
+      box-shadow: 0 3px 14px #00000008;
+    }
+    textarea {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      resize: none;
+      min-height: 42px;
+      max-height: 150px;
+      padding: 10px 8px;
+      font: inherit;
+      background: transparent;
+      color: var(--ink);
+    }
+    #send {
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 11px;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    #send:disabled { opacity: .45; cursor: not-allowed; }
+    .note { text-align: center; color: var(--muted); font-size: 11px; margin: 8px 0 0; }
+    .error { color: #b91c1c; }
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      #chat { padding: 20px 14px 14px; }
+      .composer-wrap { padding: 10px 12px 8px; }
+      .source { display: none; }
+      .welcome h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="logo">CM</div>
+      <div>
+        <h1>CareerMudhra Assistant</h1>
+        <p>Factual college, course, fee and admissions information</p>
+      </div>
+      <a class="source" href="https://careermudhra.com/" target="_blank" rel="noopener noreferrer">CareerMudhra.com ↗</a>
+    </header>
+
+    <section id="chat" aria-live="polite">
+      <div class="welcome" id="welcome">
+        <div class="spark">✳</div>
+        <h2>What information can I help you find?</h2>
+        <p>Ask about colleges, courses, fees, or admissions. If a detail cannot be verified from the information available, I’ll say so.</p>
+        <div class="suggestions">
+          <button type="button">What information does CareerMudhra provide?</button>
+          <button type="button">What should I verify about MBBS admissions?</button>
+          <button type="button">What details should I check about college fees?</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="composer-wrap">
+      <form id="form" class="composer">
+        <textarea id="input" rows="1" placeholder="Ask a factual question…" aria-label="Your message"></textarea>
+        <button id="send" type="submit" aria-label="Send message">↑</button>
+      </form>
+      <p class="note">Demo version: answers are not yet grounded in CareerMudhra's website content. Verify fees, eligibility, deadlines and admission rules with official sources.</p>
+    </div>
+  </main>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const form = document.getElementById("form");
+    const input = document.getElementById("input");
+    const send = document.getElementById("send");
+
+    function addMessage(text, role, isError = false) {
+      const welcome = document.getElementById("welcome");
+      if (welcome) welcome.remove();
+
+      const row = document.createElement("div");
+      row.className = `msg ${role === "user" ? "user" : "assistant"}`;
+
+      const avatar = document.createElement("div");
+      avatar.className = "avatar";
+      avatar.textContent = role === "user" ? "You" : "CM";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble" + (isError ? " error" : "");
+      bubble.textContent = text;
+
+      row.append(avatar, bubble);
+      chat.appendChild(row);
+      row.scrollIntoView({ behavior: "smooth", block: "end" });
+      return bubble;
+    }
+
+    async function sendMessage(message) {
+      const text = message.trim();
+      if (!text || send.disabled) return;
+
+      addMessage(text, "user");
+      input.value = "";
+      input.style.height = "auto";
+      send.disabled = true;
+      const thinking = addMessage("Thinking…", "assistant");
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+
+        let data = {};
+        try {
+          data = await response.json();
+        } catch {
+          data = {};
+        }
+
+        if (!response.ok) {
+          throw new Error(data.error || `Request failed (${response.status}).`);
+        }
+
+        const answer = (data.answer || "").trim();
+        thinking.textContent = answer || "I couldn't generate a response. Please try again.";
+        if (!answer) thinking.classList.add("error");
+      } catch (error) {
+        console.error("Chat request failed:", error);
+        thinking.textContent =
+          error instanceof TypeError
+            ? "Could not connect to the chatbot server. Make sure app.py is running and open this page at http://127.0.0.1:5000."
+            : (error.message || "Sorry, something went wrong. Please try again.");
+        thinking.classList.add("error");
+      } finally {
+        send.disabled = false;
+        input.focus();
+        thinking.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      sendMessage(input.value);
+    });
+
+    input.addEventListener("input", () => {
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 150) + "px";
+    });
+
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    document.querySelectorAll(".suggestions button").forEach(button => {
+      button.addEventListener("click", () => sendMessage(button.textContent));
+    });
+  </script>
+</body>
+</html>
+'''
+
+app_py = r'''import os
+import logging
+from flask import Flask, request, jsonify, send_from_directory
+from dotenv import load_dotenv
+from groq import Groq
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+
+app = Flask(__name__, static_folder=BASE_DIR)
+logging.basicConfig(level=logging.INFO)
+
+api_key = os.getenv("GROQ_API_KEY")
+client = Groq(api_key=api_key) if api_key else None
+
+SYSTEM_PROMPT = """
+You are CareerMudhra Assistant. Answer factual questions about colleges, courses,
+fees, eligibility, and admissions in a concise, neutral way.
+
+Important limits:
+- You do not have access to CareerMudhra's website content or a verified knowledge base
+  in this demo unless information is included in the user's message.
+- Do not claim that you checked CareerMudhra pages or official sources.
+- Never invent college fees, eligibility criteria, cutoffs, deadlines, seat availability,
+  rankings, or admission guarantees.
+- If you cannot reliably answer from your available knowledge, say that the detail
+  needs to be checked on CareerMudhra's website or the relevant college/official authority.
+- Do not provide personalized counselling or recommend which college a person should choose.
+- Do not request sensitive personal information.
+- Distinguish general information from details that must be verified.
+"""
+
+@app.get("/")
+def home():
+    return send_from_directory(BASE_DIR, "index.html")
+
+@app.post("/chat")
+def chat():
+    if client is None:
+        return jsonify({
+            "error": "The server is not configured. Add GROQ_API_KEY to the .env file and restart app.py."
+        }), 500
+
+    body = request.get_json(silent=True) or {}
+    question = body.get("message", "")
+
+    if not isinstance(question, str) or not question.strip():
+        return jsonify({"error": "Please enter a question."}), 400
+
+    question = question.strip()
+    if len(question) > 2000:
+        return jsonify({"error": "Please keep your question under 2,000 characters."}), 400
+
+    try:
+        result = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": question}
+            ],
+            max_tokens=700,
+            temperature=0.2
+        )
+        answer = result.choices[0].message.content or ""
+        return jsonify({"answer": answer.strip()})
+    except Exception:
+        # Keep provider details and credentials out of the browser response.
+        app.logger.exception("Groq API request failed")
+        return jsonify({
+            "error": "The AI provider request failed. Check your API key, model access, network connection, and Groq usage limits; then try again."
+        }), 502
+
+if __name__ == "__main__":
+    # Local demo only. Use a proper production server and HTTPS before public deployment.
+    app.run(host="127.0.0.1", port=5000, debug=False)
+'''
+
+requirements = """Flask>=3.0,<4.0
+groq>=0.9.0
+python-dotenv>=1.0
+"""
+
+env_example = """# Copy this file to .env and paste your Groq API key after the equals sign.
+GROQ_API_KEY=put_your_groq_api_key_here
+"""
+
+gitignore = """.env
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+"""
+
+readme = """# CareerMudhra Groq chatbot demo
+
+## Files
+- `index.html`: chatbot interface; contains no provider API key.
+- `app.py`: local Flask backend that calls Groq.
+- `.env.example`: example environment-variable file.
+- `requirements.txt`: Python dependencies.
+
+## Run locally
+
+1. Install Python 3.10 or newer.
+2. Open a terminal in this folder.
+3. Install dependencies:
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+4. Copy `.env.example` to a file named `.env`.
+5. Edit `.env` and replace the placeholder with your Groq API key. Do not share or upload `.env`.
+6. Start the server:
+
+   ```bash
+   python app.py
+   ```
+
+7. Open http://127.0.0.1:5000 in your browser. Do not double-click `index.html`.
+
+## Important
+This is a local demo only. It calls the model but does not yet retrieve or verify information from CareerMudhra's website. Do not rely on its answers for fees, eligibility, cutoffs, or deadlines. Add a retrieval layer from approved website content before public use. The Flask development server is not intended for production deployment.
+"""
+
+(outdir / "index.html").write_text(html, encoding="utf-8")
+(outdir / "app.py").write_text(app_py, encoding="utf-8")
+(outdir / "requirements.txt").write_text(requirements, encoding="utf-8")
+(outdir / ".env.example").write_text(env_example, encoding="utf-8")
+(outdir / ".gitignore").write_text(gitignore, encoding="utf-8")
+(outdir / "README.md").write_text(readme, encoding="utf-8")
+
+zip_path = Path("/mnt/data/careermudhra-groq-demo.zip")
+with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+    for p in outdir.iterdir():
+        zf.write(p, arcname=f"careermudhra-groq-demo/{p.name}")
+
+print("Created the fixed demo package:")
+print(zip_path)
+print("\nIncluded files:")
+for p in sorted(outdir.iterdir()):
+    print(f"- {p.name}")
