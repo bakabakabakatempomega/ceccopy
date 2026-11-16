@@ -57,3 +57,860 @@ The fee figures shown for the academic programmes (e.g., **₹2,15,000 for BDS**
 
 **Therefore, the quoted college fee does not cover hostel accommodation, travel, or other miscellaneous expenses.** Those costs need to be budgeted separately.
 ====================
+
+====================
+Request ID = d2d10bf0c714460baa6b070b7a746234
+Time = 2026-11-13 18:07:12 India Standard Time
+Status = Success
+--------------------
+<USER> **Does KMC Manipal provide hostels?**
+
+<CM> **Answer:**
+**Answer:** Yes. Kasturba Medical College (KMC) Manipal provides on‑campus hostels for both boys and girls.
+
+**Evidence from CareerMudhra**
+
+- In the “Key Highlights” table, the **Hostel** entry is listed as **“Boys and Girls.”**
+- The dedicated “Hostels” section states: *“KMC has separate hostels for boys and girls. The hostels are well‑maintained and provide students with comfortable accommodation and meals.”*
+====================
+
+====================
+Request ID = d602386c7a85472e8f4c7acdf657aa95
+Time = 2026-11-13 18:08:23 India Standard Time
+Status = Success
+--------------------
+<USER> **MBBS colleges in Karnataka**
+
+<CM> **Answer:**
+**MBBS Colleges in Karnataka (as described in the CareerMudhra material)**  
+
+| Type of Institution | Approx. Number of Colleges | Approx. MBBS Seats (total) | How Seats are Allocated for Other‑State Students |
+|---------------------|---------------------------|----------------------------|---------------------------------------------------|
+| Government Medical Colleges | 22 | ~3,450 seats | 85 % state quota – **only for Karnataka domicile** students (not open to other‑state candidates). |
+| Private Medical Colleges | 33 | ~5,545 seats | **Private (P) Quota** – open to all NEET‑qualified candidates from any state.  Also NRI/Management (Q) quotas (higher fees). |
+| Deemed Universities (Medical) | 12 | ~2,250 seats | Seats are filled through the **Medical Counselling Committee (MCC)** and are open to all‑India candidates. |
+
+### Notable Private & Deemed MBBS Colleges (examples given in the source)
+
+| College (Private / Deemed) | City | MBBS Seats | Affiliation | Counselling Route | Hospital Attached |
+|----------------------------|------|------------|-------------|-------------------|-------------------|
+| St. John’s Medical College | Bangalore | 100 | Rajiv Gandhi University of Health Sciences (RGUHS) – Minority Institution | KEA (State Counselling) | St. John’s Hospital (≈ 850 beds) |
+| MS Ramaiah Medical College | Bangalore | 150 | RGUHS | KEA (State Counselling) | MS Ramaiah Memorial Hospital |
+| Kempegowda Institute of Medical Sciences (KIMS) | Bangalore | 150 | RGUHS | KEA (State Counselling) | KIMS Hospital (≈ 750 beds) |
+| BGS Gleneagles Global Hospital & Medical College | Bangalore | 150 | RGUHS | KEA (State Counselling) | BGS Global Hospital |
+| Kasturba Medical College (KMC), Manipal | Udupi (Manipal) | 250 | Manipal Academy of Higher Education (MAHE) – Deemed University | MCC (Deemed Counselling) | Kasturba Hospital, Manipal |
+| Kasturba Medical College (KMC), Mangalore | Mangalore | 250 | MAHE – Deemed University | MCC (Deemed Counselling) | Kasturba Hospital, Mangalore |
+
+### Key Points for Prospective Students  
+
+* **Total MBBS seats in Karnataka:** ~10,145 (government + private + deemed).  
+* **Open‑category seats for other‑state students:**  
+  * Private (P) Quota in private colleges – about **4,714 seats** (regulated fee ≈ ₹10–12 Lakh per year).  
+  * Deemed university seats via MCC – about **2,250 seats** (fee ≈ ₹17–26 Lakh per year).  
+* **Government college seats** (≈ 3,450) are **not available** to non‑Karnataka domicile students because they fall under the 85 % state quota.  
+* **Admission exam:** NEET‑UG (conducted by NTA).  
+* **Counselling bodies:**  
+  * **KEA** (Karnataka Examinations Authority
+====================
+
+====================
+Request ID = cdcbe6954293467b911eacccc29fd70d
+Time = 2026-11-13 18:09:12 India Standard Time
+Status = Success
+--------------------
+<USER> **MBBS colleges in Bangalore**
+
+<CM> **Answer:**
+**MBBS colleges in Bangalore that are mentioned in the CareerMudhra material**
+
+| Category | College (as named in the source) |
+|----------|-----------------------------------|
+| **Private / Deemed (top‑private list – Table 5)** | • MS Ramaiah Medical College  <br>• KIMS Bangalore <br>• Vydehi Institute of Medical Sciences <br>• Dr. B.R. Ambedkar Medical College <br>•
+====================
+
+====================
+Request ID = c4f5741723e5445a81cb93d1d0c09447
+Time = 2026-11-16 11:08:20 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College BDS NRI fee**
+
+<CM> **Answer:**
+**RV Dental College – BDS (NRI Quota) Fee**
+
+| Category | Tuition fee (per year) |
+|----------|------------------------|
+| NRI Quota | **INR 586,950** |
+
+*Source: CareerMudhra “RV Dental College Bangalore Fees” table shows the NRI quota tuition fee for the BDS program as INR 586,950 per year.*
+====================
+
+====================
+Request ID = 82cd3783a8bf4e5aa5f49a340f0f7a3c
+Time = 2026-11-16 11:28:22 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College BDS NRI fee**
+
+<CM> **Answer:**
+**RV Dental College – BDS (NRI Quota) Fee**
+
+- **Tuition fee per year:** **₹ 586,950**  
+
+*Source: CareerMudhra “RV Dental College Bangalore Fee Structure” table showing the NRI Quota tuition fee for the BDS program.*
+====================
+
+====================
+Request ID = d9a1a24485464af8afceb282686a5018
+Time = 2026-11-16 11:34:07 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College Banagalore Hostel Fees**
+
+<CM> **Answer:**
+**Answer:**  
+The retrieved CareerMudhra page for **RV Dental College, Bangalore** does not provide any information about hostel (hostel accommodation) fees. The fee tables shown only cover tuition fees for BDS (government, private, NRI, and other quotas) and note that MDS/Ph.D. fee details are unavailable.
+
+**What could not be verified:**  
+- Hostel fees (annual, semester‑wise, or any other charge) for RV Dental College, Bangalore.
+
+**Recommendation:**  
+To obtain the current hostel fee details, you may need to contact the college directly or use the “Apply Now” / “Personalised Career Counselling” form on the CareerMudhra website for up‑to‑date information.
+====================
+
+====================
+Request ID = de303c8144164c38a5f1b324c43ad3f1
+Time = 2026-11-16 11:37:00 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College bangalore Placement and career opportunities**
+
+<CM> **Answer:**
+**Placement & Career Opportunities at RV Dental College, Bangalore**
+
+- **Graduate Success**  
+  - Over **3,000** undergraduate and postgraduate students have graduated from the college.  
+  - Many alumni have achieved **top university rankings** in various professional fields.
+
+- **Hospital & Clinical Exposure**  
+  - Students are prepared to take **peripheral postings in respected hospitals nationwide**, giving them practical experience across the country.
+
+- **Teaching & Academic Roles**  
+  - Post‑graduate students may **assist in teaching undergraduate courses**, gaining pedagogical experience that can lead to future academic positions.
+
+- **Specialised Dental Opportunities**  
+  - The college mentions **opportunities in “dental space‑based equipment,”** indicating potential involvement with advanced dental technologies and research.
+
+- **Co‑curricular Development**  
+  - The institution emphasizes **co‑curricular abilities**, helping students develop skills that support career growth in their chosen dental specialties.
+
+---
+
+### What the source does **not** specify
+- Exact placement statistics (e.g., number of students placed per year, companies/hospitals hiring, salary ranges).  
+- Specific career pathways or sectors beyond the general mentions above.  
+- Recent or detailed data on placement outcomes.
+
+**Recommendation:** For the most current and detailed placement information (e.g., recent recruiters, salary packages, alumni placement records), contact RV Dental College directly or reach out to the CareerMudhra support team as suggested in the source.
+====================
+
+====================
+Request ID = 71dac97f49e54d41858562f324672b37
+Time = 2026-11-16 11:41:17 India Standard Time
+Status = Success
+--------------------
+<USER> **what are the facilities available on campus for students in RV Dental College**
+
+<CM> **Answer:**
+**On‑campus facilities for students at RV Dental College (Bangalore)**  
+
+According to the CareerMudhra page for RV Dental College, the campus provides the following student facilities:
+
+- **Labs** – fully equipped laboratories for practical and research work.  
+- **Library** – a resource centre for academic study.  
+- **Transportation** – campus transport services.  
+- **Hostel** – residential accommodation for students.  
+- **Cafeteria** – a spacious dining area.  
+- **Sports** – facilities for recreational and athletic activities.  
+
+Additional amenities mentioned include a **shopping arcade** and an **ATM** located at the hospital premises on the campus.  
+
+*These details are taken directly from the “RV Dental College Bangalore On‑Campus Facilities” section of the CareerMudhra reference.*
+====================
+
+====================
+Request ID = 5f442a453b6a4e27ba402b885330e5c3
+Time = 2026-11-16 11:45:50 India Standard Time
+Status = Success
+--------------------
+<USER> **KMC Manipal facilitis**
+
+<CM> **Answer:**
+**Facilities at Kasturba Medical College (KMC), Manipal**
+
+| Category | Facilities / Highlights |
+|----------|--------------------------|
+| **On‑Campus Facilities** | A state‑of‑the‑art campus that provides a broad range of resources to support both academic work and extracurricular activities. |
+| **Sports Facilities** | • Gymnasium  <br>• Swimming pool  <br>• Basketball court  <br>• Tennis courts  <br>• Cricket ground  <br>• Various sports clubs and teams for student participation |
+| **Cultural Facilities** | • Numerous clubs and societies that organize cultural events and festivals throughout the year  <br>• Performing‑arts groups, including music, dance, and drama clubs |
+| **Other Facilities** | • Bank and ATM  <br>• Post office  <br>• Bookstore  <br>• Canteen |
+
+*These details are taken from the “On Campus Facilities”, “Sports Facilities”, “Cultural Facilities”, and “Other Facilities” sections of the CareerMudhra page for Kasturba Medical College, Manipal.*
+====================
+
+====================
+Request ID = f49e271a07a3483fabe831b687c1efe6
+Time = 2026-11-16 11:46:51 India Standard Time
+Status = Success
+--------------------
+<USER> **KMC Manipal BDS admission and fees**
+
+<CM> **Answer:**
+**Direct answer**
+
+The CareerMudhra material you provided does **not contain any information about the BDS (Bachelor of Dental Surgery) programme** at Kasturba Medical College (KMC) Manipal – neither the admission procedure specific to BDS nor the fee structure for that course.
+
+**What can be confirmed from the available source**
+
+| Item | Details mentioned in the source |
+|------|----------------------------------|
+| General admission requirement for KMC (medical courses) | Candidates must be eligible for the **NEET‑UG** exam and then register for **MCC (Medical Counselling Committee) counseling**. |
+| Registration step (personal details) | • Registration fee: **₹5,000** (non‑refundable)  <br>• Security deposit: **₹2,00,000** (refundable)  <br>• Payment can be made online via credit/debit card or net‑banking. |
+| Courses listed for KMC Manipal | MBBS, MD/MS, DM/MCh, and various fellowships – **no BDS** is listed. |
+| Fee tables provided | Detailed fee tables for **DM/MCh and fellowship programmes** (management category) – **no BDS fee data**. |
+
+**What is missing / could not be verified**
+
+- **Eligibility criteria specific to BDS** (e.g., NEET‑DG requirement, cut‑offs, quota details).  
+- **Admission process steps unique to BDS** (counselling rounds, seat allocation, documentation).  
+- **BDS fee structure** (tuition, hostel, other charges, total programme cost).  
+
+**Recommendation**
+
+Since the current CareerMudhra page does not cover BDS at KMC Manipal, you should:
+
+1. Visit the **official KMC Manipal website** or the dedicated **CareerMudhra BDS page** (if available) for up‑to‑date admission requirements and fee details.  
+2. Check the **MCC counselling portal** for BDS seat allocation procedures and cut‑off trends.  
+3. Contact KMC’s admissions office directly for the most accurate and complete information.
+====================
+
+====================
+Request ID = 8cc824ab63da4b799ece9ec9f20e8040
+Time = 2026-11-16 11:48:12 India Standard Time
+Status = Success
+--------------------
+<USER> **KMC Manipal MBBS admission process**
+
+<CM> **Answer:**
+**Kasturba Medical College (KMC) Manipal – MBBS Admission Process (as per CareerMudhra)**  
+
+1. **Qualify the NEET‑UG exam** – You must be eligible (i.e., meet the minimum qualifying marks and other eligibility criteria set for NEET‑UG).  
+
+2. **Register for MCC (Medical Counselling Committee) counselling** – After the NEET results are declared, you need to register on the MCC portal for the counselling process.  
+
+3. **Follow the MCC counselling steps** – The CareerMudhra article states that you should “follow the following steps,” but the specific steps are not listed in the provided material.  
+
+> *The reference does not give a detailed, step‑by‑step breakdown beyond the NEET‑UG eligibility and MCC counselling registration.*  
+
+**What is not covered in the source:**  
+- Exact number of seats / intake capacity for MBBS at KMC Manipal.  
+- Detailed counselling procedures (choice filling, seat allotment, document verification, fee payment, etc.).  
+
+For the complete, up‑to‑date procedure, you may want to consult the official KMC Manipal website or the MCC counselling guidelines.
+====================
+
+====================
+Request ID = 4d34d95956c84a06b3b4dbc30580fdc0
+Time = 2026-11-16 11:49:34 India Standard Time
+Status = Success
+--------------------
+<USER> **Bangalore MBBS colleges**
+
+<CM> **Answer:**
+**Bangalore MBBS colleges listed on CareerMudhra**
+
+| College (Bangalore) | Mentioned in CareerMudhra source |
+|----------------------|-----------------------------------|
+| Kempegowda Institute of Medical Sciences (KIMS) | “Kempegowda Institute Of Medical Science Bangalore” |
+| East Point Medical College | “East Point Medical College Bangalore” |
+| Dr. Chandramma Dayananda Sagar Medical College | “Dr Chandramma Dayananda Sagar Medical College Bangalore” |
+| Akash Medical College | “Akash Medical College Bangalore” |
+| St. John’s Medical College | “St. John’s Medical College Bangalore” |
+| Oxford Medical College | “Oxford Medical College Bangalore” |
+| MVJ Medical College | “MVJ Medical College Bangalore” |
+| PES University Institute of Medical Sciences & Research (PESU‑IMSR) | “PES University Institute of Medical Sciences and Research Bangalore (PESUIMSR)” |
+| BGS Medical College & Hospital (BGS MCH) | “BGS Medical College and Hospital (BGS MCH)” |
+| Ramaiah Medical College | “Ramaiah Medical College Bangalore” |
+| Rajarajeshwari Medical College | “Rajarajeshwari Medical College Bangalore” |
+
+**Note:**  
+- The above list is compiled solely from the sections provided in the CareerMudhra reference material.  
+- If you need detailed information (admission criteria, fee structure, courses, facilities, etc.) for any specific college, please refer to the corresponding CareerMudhra webpage for that institution.
+====================
+
+====================
+Request ID = d881a373d3c9450ba2c26a5b79086d25
+Time = 2026-11-16 11:50:49 India Standard Time
+Status = Success
+--------------------
+<USER> **Ramaiah Medical College mbbs admission and fees**
+
+<CM> **Answer:**
+**Ramaiah Medical College – MBBS Admission & Fees (as per CareerMudhra)**  
+
+---
+
+### 1. Admission Overview  
+
+| Item | Details (CareerMudhra) |
+|------|------------------------|
+| **Course** | MBBS |
+| **Annual Intake** | **150** seats |
+| **Admission Process** | Merit‑based online counselling conducted by the **Karnataka Examination Authority (KEA)** for MBBS (and MD/MS) seats. |
+| **Eligibility / Cut‑off** | *Not provided* in the retrieved material. You may need to check the official college website or the Karnataka state counselling brochure for NEET‑UG score requirements. |
+
+---
+
+### 2. Fee Structure (Domestic – per year)
+
+| Quota | Fee (INR) per year |
+|-------|--------------------|
+| **Government quota** | **1,57,371** |
+| **Private quota** | **25,15,750** |
+| **Management quota** | **45,15,750** |
+
+*The table in the source lists these amounts under “Domestic Fee” for **M S Ramaiah Medical College, Bangalore** with 150 seats, which aligns with the MBBS intake.*
+
+---
+
+### 3. What the source does **not** specify  
+
+- Exact eligibility criteria (e.g., minimum NEET‑UG score, age limits).  
+- Total programme cost (the figure above is **per year**; the MBBS program is typically 5 years).  
+- Hostel, mess, or other ancillary fees.  
+- Scholarship or loan details specific to MBBS (general information on scholarships/loans is mentioned, but no figures).  
+
+---
+
+### 4. Next Steps / Recommendations  
+
+- **Verify the latest fee amounts** on the official Ramaiah Medical College website or the latest Karnataka counselling circular, as fees can be revised each academic year.  
+- **Check eligibility** (NEET‑UG cut‑off, age, domicile requirements) from the Karnataka Examination Authority’s official counselling guidelines.  
+- If you need information on **hostel fees, scholarships, or total programme cost**, consult the college’s admissions office or the CareerMudhra page for any updates.  
+
+--- 
+
+*All information above is taken directly from the CareerMudhra page titled “Ramaiah Medical College Bangalore Admission, Courses, Eligibility.”*
+====================
+
+====================
+Request ID = f4bf6869b6ed446481c9f8023e5be31b
+Time = 2026-11-16 11:56:10 India Standard Time
+Status = Success
+--------------------
+<USER> **Ramaiah Medical College Admission Process**
+
+<CM> **Answer:**
+**Ramaiah Medical College – Admission Process (as per CareerMudhra)**  
+
+---
+
+### 1. Admission Intake (Seats Available)
+
+| Programme | Seats |
+|-----------|-------|
+| MBBS | 150 |
+| MD (all specialisations) | 140 |
+| DM (all specialisations) | 26 |
+| MS (all specialisations) | 50 |
+| MCh (all specialisations) | 2 |
+
+*Source: “Admission Intake” table in the CareerMudhra page.*
+
+---
+
+### 2. How Admissions Are Conducted  
+
+| Programme | Conducting Authority | Basis of Selection |
+|-----------|----------------------|--------------------|
+| MBBS | Karnataka Examination Authority (KEA) – online counselling | Merit (based on entrance exam scores) |
+| MD / MS | Karnataka Examination Authority (KEA) – online counselling | Merit |
+| DM / MCh | Directorate General of Health Services (DGHS) – online counselling | Merit |
+
+*Source: “Admission Procedure” section – admissions are merit‑based and done through online counselling by the authorities listed above.*
+
+---
+
+### 3. General Steps for Online Counselling (MBBS & MD/MS)
+
+CareerMudhra mentions that candidates must **register for online counselling** with the respective authority (KEA for MBBS, MD/MS). While the exact step‑by‑step instructions are not detailed in the provided material, the typical flow for KEA counselling (as practiced for Karnataka medical colleges) includes:
+
+1. **Eligibility Confirmation** – Ensure you meet the eligibility criteria for the desired programme (e.g., qualifying exam scores, age limits, etc.).  
+2. **Online Registration** – Create an account and fill in personal, academic, and contact details on the KEA counselling portal.  
+3. **Document Upload** – Upload required documents (photo, signature, qualifying exam scorecard, caste/category certificate, etc.).  
+4. **Payment of Counselling Fee** – Pay the prescribed counselling fee online.  
+5. **Choice Filling** – Select preferred colleges and programmes in order of priority.  
+6. **Seat Allocation** – Seats are allotted based on merit rank, preferences, and seat availability.  
+7. **Admission Confirmation** – Accept the allotted seat, pay the admission fee, and complete any further verification as instructed by the college.
+
+*Note: The exact sequence and required documents are governed by the KEA/DGHS guidelines; the above outline reflects the standard procedure for Karnataka medical college counselling.*
+
+---
+
+### 4. What Is Not Specified in the Source
+
+- **Detailed eligibility criteria** (minimum marks, age limits, reservation quotas, etc.) for each programme.  
+- **Exact online counselling portal URLs** or login credentials.  
+- **Specific dates** for registration, choice filling, and seat allotment.  
+- **Fee structure** for the admission process (counselling fee, tuition, etc.).  
+
+For these missing details, you should refer to the official **Karnataka Examination Authority** website for MBBS/MD/MS counselling or the **Directorate General of Health Services** portal for DM/MCh counselling, or directly contact Ramaiah Medical College’s admission office.
+
+---
+
+### 5. Quick Summary
+
+- **150 MBBS seats** are filled through **online counselling by KEA** on a merit basis.  
+- **MD/MS seats (190 total)** also use KEA online counselling.  
+- **DM/MCh seats** are allotted via **DGHS online counselling**.  
+- The process requires **online registration, document upload, fee payment, choice filling, and seat allocation** as per the respective authority’s guidelines.
+
+If you need the precise dates, eligibility cut‑offs, or the exact online portal links, please check the latest KEA/DGHS notifications or the official Ramaiah Medical College admission
+====================
+
+====================
+Request ID = b5b00576d42f458c9d88757687d92072
+Time = 2026-11-16 11:57:49 India Standard Time
+Status = Success
+--------------------
+<USER> **What information does CareerMudhra provide?**
+
+<CM> **Answer:**
+**Answer**
+
+Based on the only reference that was retrieved, CareerMudhra provides **guidance on the minimum NEET marks required for admission to MBBS programs** (as shown in the article titled “Lowest Marks In NEET For MBBS: Guidance From CareerMudhra”).
+
+The reference does not contain any additional information about other topics or services offered by CareerMudhra. To learn about the full range of information the site provides (e.g., details on colleges, courses, eligibility, fees, placements, etc.), you would need to consult other CareerMudhra pages or the website directly.
+====================
+
+====================
+Request ID = eaef57d38e67469390df203bf5e46be7
+Time = 2026-11-16 11:58:31 India Standard Time
+Status = Success
+--------------------
+<USER> **What should I verify about MBBS admissions?**
+
+<CM> **Answer:**
+**Key Points to Verify before pursuing MBBS admission in Delhi (2026)**  
+
+| Area | What you need to confirm | Why it matters |
+|------|--------------------------|----------------|
+| **1. Eligibility** | • You have passed 11th & 12th (10+2) from a recognized school in Delhi.<br>• If you studied through NIOS or Patrachar Vidyalaya, the study centre must be in Delhi.<br>• You are medically fit to undertake the MBBS course. | Only candidates meeting these criteria are eligible for the 85 % Delhi State quota. |
+| **2. Mandatory Entrance Exam** | • You must appear for **NEET‑UG 2026** (conducted by NTA). No separate Delhi University exam exists. | Admission is purely merit‑based on NEET percentile/marks. |
+| **3. Quota Structure** | • 85 % of seats are under the **Delhi State quota** (requires Delhi school background).<br>• 15 % are under the **All‑India quota** (managed centrally by the Ministry of Health & Family Welfare). | Determines which counseling round you will be placed in and the applicable eligibility rules. |
+| **4. Counseling & Seat Allocation** | • Seats are allotted through the **MCC portal** (www.mcc.nic.in).<br>• After allotment, you must register on the **Faculty of Medical Sciences (FMS) website** (www.fmsc.ac.in) after document verification.<br>• Check for any **Stray Vacancy Round** for leftover seats. | Missing any of these steps can lead to loss of your allotted seat. |
+| **5. Required Documents & Fees** | • NEET‑UG 2026 admission ticket, original certificates, and NEET‑UG scorecard.<br>• **Registration fee** (non‑refundable): Rs 1500 for General/OBC/EWS, Rs 1000 for SC/ST/PwBD.<br>• **Surety bond** of Rs 3 lakhs with two sureties (form available on www.fmsc.ac.in).<br>• If you are already pursuing MBBS/BDS elsewhere, you need a **cancellation certificate**. | Failure to submit any of these can invalidate your admission. |
+| **6. Expected NEET Cut‑offs** | • Approximate cut‑off percentiles and score ranges (e.g., UR/EWS ≈ 50th percentile, 686–144 marks). | Gives a realistic benchmark of the marks you’ll likely need for a Delhi seat. |
+| **7. Status of Seats** | • The 85 % Delhi quota seats are currently **closed** (as per the “Status” field). | You must verify whether the quota has reopened or if you need to apply through the All‑India quota. |
+| **8. Timeline & Updates** | • Follow the **MCC counseling schedule** and any updates posted on the MCC and FMS websites. | Admissions are time‑sensitive; missing deadlines results in forfeiture of seats. |
+
+### What to Do Next
+1. **Check the latest MCC portal** for the current status of the Delhi quota and exact counseling dates.  
+2. **Confirm your eligibility** (school location, 10+2 completion, medical fitness).  
+3. **Prepare the required documents** (NEET
+====================
+
+====================
+Request ID = f9d5cd2e788a45c7b9ba3fc89c47ce72
+Time = 2026-11-16 11:59:05 India Standard Time
+Status = Success
+--------------------
+<USER> **What details should I check about college fees?**
+
+<CM> **Answer:**
+**Key details you should verify when reviewing a college’s fee structure**
+
+| Detail | Why it matters | Typical source of information |
+|--------|----------------|------------------------------|
+| **Course‑wise tuition fee** | Shows the base cost of the program you intend to join. | Fee tables for each course (e.g., BDS, MDS). |
+| **Seat‑type variation** | Many institutions charge different amounts for government‑quota seats and management‑quota seats. | Separate columns for “Fees for Govt. Seats” and “Fees for Management Seats.” |
+| **Fee range for management seats** | Management‑quota fees can vary by department or specialization, so a range is often given. | Example: MDS management fees “Rs. 4,00,000 – 14,00,000/- (subject to department/specialization).” |
+| **Total programme cost** | Helps you calculate the overall financial commitment (often the sum of yearly/semester fees). | Usually provided as a cumulative figure or can be derived from yearly fees. |
+| **Additional charges** | Includes lab fees, library fees, examination fees, registration, and other mandatory expenses that are not part of tuition. | Usually listed in a detailed fee breakdown on the college’s fee page. |
+| **Hostel / accommodation fees** | If you plan to stay on campus, this can be a significant part of the total cost. | Separate hostel‑fee table or section. |
+| **Scholarships, concessions & financial aid** | May reduce the payable amount; eligibility criteria are important to check. | Scholarship/financial‑aid section of the college website. |
+| **Payment schedule** | Knowing whether fees are payable annually, per semester, or in lump sum helps with budgeting. | Fee‑payment calendar or “Fee payment schedule” section. |
+| **Refund & cancellation policy** | Important if you need to withdraw or defer admission. | Admission‑policy or fee‑policy page. |
+| **GST / taxes & other statutory levies** | Some fees may include GST or other taxes; confirm if the quoted amount is inclusive or exclusive. | Fine‑print in the fee table or footnotes. |
+| **Currency & format** | Ensure the amount is expressed in the correct currency (e.g., Rs.) and format (e.g., “Rs. 95,808 /-”). | Directly from the fee table. |
+
+---
+
+### Example from the retrieved material (Rajarajeswari Dental College & Hospital, Bangalore)
+
+| Course | Govt‑Seat Fee | Management‑Seat Fee |
+|--------|---------------|---------------------|
+| **BDS** (Bachelor of Dental Surgery) | Rs. 95,808 /‑ | Rs. 4,12,000 /‑ |
+| **MDS** (Master of Dental Surgery) | Rs. 2,50,000 /‑ | Rs. 4,00,000 /‑ to 14,00,000 /‑ (varies by department/specialisation) |
+
+*These figures illustrate the “Course‑wise tuition fee” and “Seat‑type variation” rows in the table above.*
+
+---
+
+### How to use this checklist
+
+1. **Locate the fee table** on the college’s official page (often under “Fees Structure”).  
+2. **Identify your specific course** and note the tuition amount for the relevant seat type (government or management
+====================
+
+====================
+Request ID = 3e7a8e7b63f04bea9cfb70add93e6985
+Time = 2026-11-16 12:17:08 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College BDS Fees**
+
+<CM> **Answer:**
+**RV Dental College – BDS Tuition Fees (per year)**  
+
+| Quota            | Tuition fee (per year) |
+|------------------|------------------------|
+| Government quota | INR 95,308 /- |
+| Private quota    | INR 586,950 /- |
+| NRI quota        | INR 586,950 /- |
+| Other quota      | INR 586,950 /- |
+
+*These figures are taken directly from the “RV Dental College BDS Fees” table on the CareerMudhra page for RV Dental College, Bangalore.*
+====================
+
+====================
+Request ID = 75398edad7c84b7685aab34fc388c4cf
+Time = 2026-11-16 12:18:51 India Standard Time
+Status = Success
+--------------------
+<USER> **tell me about careermudhra**
+
+<CM> **Answer:**
+**What the provided material tells us about CareerMudhra**
+
+- CareerMudhra is a website that publishes guidance articles related to education and admissions.  
+- One of its articles is titled **“Lowest Marks In NEET For MBBS: Guidance From CareerMudhra,”** which suggests that the site offers advice to students aiming for MBBS admission through the NEET exam, especially for those with lower scores.
+
+**What is not covered in the retrieved material**
+
+- The reference does not contain a general description of CareerMudhra (e.g., its mission, range of services, other subjects covered, history, or contact information).  
+- No details are provided about the organization’s overall offerings, team, or other educational resources.
+
+**Conclusion**
+
+Based on the available reference, the only verifiable information is that CareerMudhra publishes guidance articles such as the one on low NEET scores for MBBS admission. For a broader overview of CareerMudhra—its purpose, services, and other content—you would need to consult additional pages on the CareerMudhra website.
+====================
+
+====================
+Request ID = fe9fe56c7a964f3b95b1bfbf589f7abf
+Time = 2026-11-16 12:35:45 India Standard Time
+Status = Success
+--------------------
+<USER> **RV College of Enginnering**
+
+<CM> **Answer:**
+**RV College of Engineering – Key Information (2026)**  
+
+---
+
+### 1. Overview  
+RV College of Engineering (RVCE), Bangalore, is consistently ranked among the top private engineering colleges in India. It is placed in the 101‑150 band of the NIRF rankings and is noted for strong placements, industry‑linked projects, and a vibrant campus life.
+
+---
+
+### 2. Management‑Quota Fees  
+
+| Programme / Branch | Management‑Quota Fee (total for 4 years) |
+|---------------------|-------------------------------------------|
+| Computer Science & Engineering (CSE) | **₹ 75 lakhs** |
+| General B.Tech (all branches) | **₹ 4.50 lakhs – ₹ 75 lakhs** (range depends on course and admission mode) |
+
+*The fee figures are quoted for the complete four‑year programme.*
+
+---
+
+### 3. Hostel Fees  
+
+| Category | Hostel Fee (per year) |
+|----------|-----------------------|
+| Girls (Krishna Garden Hostel) | **₹ 4,250** |
+| Boys | *Not specified in the available material* – the college will inform candidates separately. |
+
+Hostel charges are **separate from tuition fees**.
+
+---
+
+### 4. Admissions (2026)
+
+- **Programs offered:** Undergraduate (B.Tech) and postgraduate courses.  
+- **Entry routes:**  
+  - **Management quota** – requires a qualifying rank or valid exam score and meeting the college’s eligibility criteria.  
+  - **Entrance exams** – KCET, COMEDK, etc.  
+
+*Early application is advised for management‑quota seats because they fill quickly.*
+
+---
+
+### 5. Why Choose RVCE?
+
+- Consistently top‑10 private engineering college in India.  
+- Strong placement support with top MNCs and core companies.  
+- High demand for branches such as CSE, ISE, ECE, and emerging‑technology streams.  
+- Excellent internship, research, and project opportunities.  
+- Active student clubs, technical fests, hackathons, and exposure to startups.  
+- Located in Bangalore, close to major IT hubs and industries.
+
+---
+
+### 6. How to Apply  
+
+1. **Entrance‑exam route:** Appear for KCET, COMEDK, or other relevant state/national exams.  
+2. **Management‑quota route:** Submit an application directly to the college (or via the CareerMudhra “Apply Now” form) and meet the required rank/score and eligibility criteria.
+
+---
+
+### 7. Information Gaps  
+
+- Exact **boys’ hostel fee** is not provided in the retrieved material.  
+- Detailed breakdown of **management‑quota fees** for branches other than CSE is not listed; only the overall B.Tech range (₹ 4.50 lakhs – ₹ 75 lakhs) is given.  
+
+For the most up‑to‑date and detailed figures, please consult the official RV College of Engineering website or contact the admissions office directly.
+====================
+
+====================
+Request ID = 45c100be93b04233afaa4682c40bc542
+Time = 2026-11-16 12:39:41 India Standard Time
+Status = Success
+--------------------
+<USER> **East Point Medical College NRI fees MD Radio diagnosis**
+
+<CM> **Answer:**
+**NRI fee for the MD Radio Diagnosis program at East Point Medical College (Bangalore)**  
+
+- **₹ 1,15,15,750** per year (NRI quota)
+
+*Source: “MD/MS Fees” table on the East Point Medical College page, which lists the NRI fee for “M.D. Radio Diagnosis” as 1,15,15,750 INR.*
+====================
+
+====================
+Request ID = afc9bdbea646468d80d6689779d0deb3
+Time = 2026-11-16 13:12:12 India Standard Time
+Status = Success
+--------------------
+<USER> **MBBS Colleges in Bangalore**
+
+<CM> **Answer:**
+**MBBS colleges located in Bangalore (as listed on CareerMudhra)**  
+
+| College (Bangalore) | Notes from the source |
+|----------------------|-----------------------|
+| Rajarajeshwari Medical College, Bangalore | Mentioned in the “Rajarajeshwari Medical College Bangalore: Admission, Fees, Placements, Rankings, Review” section. |
+| Kempegowda Institute of Medical Sciences, Bangalore | Appears in the “Kempegowda Institute Of Medical Science Bangalore” section. |
+| East Point Medical College, Bangalore | Listed under “East Point Medical College Bangalore Admissions, Fees, Courses”. |
+| Dr. Chandramma Dayananda Sagar Medical College, Bangalore | Included in the “Dr Chandramma Dayananda Sagar Medical College Bangalore: Admissions, Courses, Fees, Placements, Rankings, Facilities” section. |
+| Akash Medical College, Bangalore | Referenced in the “Akash Medical College Bangalore Admission, Courses Offered, Fees Structure, Recognition, Facilities” section. |
+| St. John’s Medical College, Bangalore | Cited in the “St. John’s Medical College Bangalore Admissions, Courses, Fees” section. |
+| Oxford Medical College, Bangalore | Found in the “Oxford Medical College Bangalore Admission, Fee Structure, Courses Offered, Facilities” section. |
+| MVJ Medical College, Bangalore | Mentioned in the “MVJ Medical College Bangalore Admissions, Courses, Fees” section. |
+| PES University Institute of Medical Sciences & Research, Bangalore (PESUIMSR) | Listed under “PES University Institute of Medical Sciences and Research Bangalore (PESUIMSR): Fees, Admission, Courses, Facilities”. |
+| Ramaiah Medical College, Bangalore | Appears in the “Ramaiah Medical College Bangalore Admission, Courses, Eligibility” section. |
+| Sapthagiri Medical College, Bangalore | Referenced in the “Sapthagiri Medical College Bangalore” entry. |
+
+**Additional note**
+
+- **BGS Medical College and Hospital (BGS MCH)** is also listed in the reference material, but the source does not explicitly state that it is located in Bangalore. Therefore, its inclusion as a Bangalore‑based MBBS college cannot be confirmed from the provided content.  
+
+If you need more detailed information (e.g., admission criteria, fee structure, facilities) for any of the colleges above, please refer to the specific CareerMudhra page for that institution or let me know which college you’d like to explore further.
+====================
+
+====================
+Request ID = 88571178f4264a3b8126e1ddd8c0e9ae
+Time = 2026-11-16 13:16:20 India Standard Time
+Status = Success
+--------------------
+<USER> **can you list all the mbbs colleges in banaglore**
+
+<CM> **Answer:**
+**MBBS colleges in Bangalore (as listed on CareerMudhra’s “MBBS Admission In Bangalore 2026” page)**  
+
+- Rajarajeshwari Medical College, Bangalore  
+- Kempegowda Institute of Medical Sciences (KIMS), Bangalore  
+- East Point Medical College, Bangalore  
+- Dr. Chandramma Dayananda Sagar Medical College, Bangalore  
+- Akash Medical College, Bangalore  
+- St. John’s Medical College, Bangalore  
+- Oxford Medical College, Bangalore  
+- MVJ Medical College, Bangalore  
+- PES University Institute of Medical Sciences & Research (PESUIMSR), Bangalore  
+- BGS Medical College & Hospital (BGS MCH), Bangalore  
+- Ramaiah Medical College, Bangalore  
+- Sapthagiri Medical College, Bangalore  
+
+*These institutions are the ones explicitly mentioned in the CareerMudhra reference for MBBS admission in Bangalore. If you need detailed information (e.g., eligibility, fees, intake) for any specific college, please refer to the corresponding College’s page on CareerMudhra.*
+====================
+
+====================
+Request ID = 688b9dbdc5334ff381aeca981eecdd8e
+Time = 2026-11-16 13:44:35 India Standard Time
+Status = Fail
+--------------------
+<USER> **hey, what do you do?**
+
+<CM> **Sorry, I couldn't find enough relevant information on CareerMudhra to answer that reliably. Please try rephrasing your question with the college name, course, or specific information you're looking for.**
+
+Error: No usable reference material was found.
+====================
+
+====================
+Request ID = 436eaa46500849e582a3544d8c439cba
+Time = 2026-11-16 13:51:09 India Standard Time
+Status = Success
+--------------------
+<USER> **Enginnering colleges in Bangalore**
+
+<CM> **Answer:**
+**Answer**
+
+Based on the CareerMudhra reference material you provided, the only engineering college in Bangalore that is mentioned is:
+
+| College | Location | Source |
+|---------|----------|--------|
+| New Horizon College of Engineering | Bangalore | “New Horizon College Of Engineering Bangalore \| Admission” (CareerMudhra) |
+
+The retrieved page does not contain information about any other engineering colleges in Bangalore. Therefore, I cannot confirm additional engineering colleges in Bangalore from the supplied material.
+
+**What you can do next**
+
+- Visit the CareerMudhra website and search for “engineering colleges in Bangalore” to see a more comprehensive list.
+- Check the individual college pages on CareerMudhra for details such as courses, admissions, fees, and placements.
+====================
+
+====================
+Request ID = ac1f3631ce124e638c2fcad2c72b1e54
+Time = 2026-11-16 13:52:55 India Standard Time
+Status = Success
+--------------------
+<USER> **Engineering colleges in Bangalore**
+
+<CM> **Answer:**
+**Answer**
+
+The provided CareerMudhra reference (“Management Quota Fees For Engineering Colleges In Bangalore 2026”) does not contain a list of engineering colleges in Bangalore. It only gives the page title and URL, without naming any specific institutions.
+
+**What can be done next?**  
+To obtain a list of engineering colleges in Bangalore, you should visit the referenced page directly:
+
+- **URL:** https://careermudhra.com/engineering/fees/management-quota-fees-bangalore/
+
+That page is expected to include details such as college names, fee structures, and other relevant information. If you need further assistance after reviewing the page, feel free to ask!
+====================
+
+====================
+Request ID = 6cfe637b1b4047d282fff610315a851d
+Time = 2026-11-16 13:57:39 India Standard Time
+Status = Fail
+--------------------
+<USER> **RVCE Management quota fees**
+
+<CM> **Sorry, I couldn't find enough relevant information on CareerMudhra to answer that reliably. Please try rephrasing your question with the college name, course, or specific information you're looking for.**
+
+Error: No usable reference material was found.
+====================
+
+====================
+Request ID = d1c9c0a87d9d4b6195ac0d3cf292f972
+Time = 2026-11-16 14:00:20 India Standard Time
+Status = Success
+--------------------
+<USER> **list all MBBS Colleges in Bangalore**
+
+<CM> **Answer:**
+**MBBS colleges in Bangalore (as listed by CareerMudhra)**  
+
+- Kempegowda Institute of Medical Sciences (KIMS), Bangalore  
+- East Point Medical College, Bangalore  
+- Dr. Chandramma Dayananda Sagar Medical College, Bangalore  
+- Akash Medical College, Bangalore  
+- St. John’s Medical College, Bangalore  
+- Oxford Medical College, Bangalore  
+- MVJ Medical College, Bangalore  
+- PES University Institute of Medical Sciences & Research (PESUIMSR), Bangalore  
+- BGS Medical College & Hospital (BGS MCH), Bangalore  
+- Ramaiah Medical College, Bangalore  
+- Rajarajeshwari Medical College, Bangalore  
+
+These institutions are the ones explicitly mentioned in the CareerMudhra pages **“MBBS Colleges In Bangalore 2025,” “MBBS Admission In Bangalore 2026,”** and **“Medical Colleges In Bangalore 2026”** as being located in Bangalore and offering MBBS programmes.  
+
+*If you need more details (e.g., admission criteria, fees, seat intake) for any of these colleges, please let me know.*
+====================
+
+====================
+Request ID = 8013717971a54de5a9dd8b12563bf760
+Time = 2026-11-16 14:01:06 India Standard Time
+Status = Success
+--------------------
+<USER> **list all engineering colleges in bangalore**
+
+<CM> **Answer:**
+**Answer**
+
+Based on the CareerMudhra pages that were provided, the only engineering colleges in Bangalore that are explicitly mentioned are:
+
+| College (Bangalore) | Source |
+|----------------------|--------|
+| Ghousia College of Engineering, Bangalore | “Ghousia College Of Engineering Bangalore: Courses, Fees 2026” |
+| New Horizon College of Engineering, Bangalore | “New Horizon College Of Engineering Bangalore \| Admission” |
+
+**What could not be verified**
+
+The page titled **“Engineering Colleges In Karnataka 2026 : Complete List”** likely contains a full list of engineering colleges across Karnataka, including those in Bangalore, but the actual list of colleges was not included in the retrieved content. Therefore, a complete enumeration of **all** engineering colleges located in Bangalore cannot be provided from the available material.
+
+**Recommendation**
+
+To obtain a comprehensive list of every engineering college in Bangalore, please visit the full “Engineering Colleges In Karnataka 2026” page on CareerMudhra or consult the official Karnataka engineering college directory.
+====================
+
+====================
+Request ID = 05c3468d9af849409a5905533f7f3c24
+Time = 2026-11-16 14:11:51 India Standard Time
+Status = Success
+--------------------
+<USER> **RV Dental College BDS NRI fees**
+
+<CM> **Answer:**
+**RV Dental College – BDS (NRI Quota) Fee**
+
+- **Fee amount:** **₹ 586,950 per year** (tuition fee for the NRI quota)
+
+*Source: RV Dental College Bangalore “RV Dental College BDS Fees” table lists the NRI Quota fee as INR 586,950 per year.*
+====================
+
+====================
+Request ID = 709b3703cd0b49f98f2e9bff0f94d9c9
+Time = 2026-11-16 14:26:59 India Standard Time
+Status = Success
+--------------------
+<USER> **all engineering colleges in bangalore**
+
+<CM> **Answer:**
+**Answer**
+
+The CareerMudhra material that was retrieved contains information about only two specific engineering colleges in Bangalore:
+
+| College (Bangalore) | Reference |
+|----------------------|-----------|
+| New Horizon College of Engineering | “New Horizon College Of Engineering Bangalore \| Admission” |
+| Ghousia College of Engineering | “Ghousia College Of Engineering Bangalore: Courses, Fees 2026” |
+
+In addition, there is a separate CareerMudhra page titled **“Management Quota Fees For Engineering Colleges In Bangalore 2026.”** This page discusses management‑quota fee details for engineering colleges in Bangalore, but the excerpt provided does not list the individual colleges covered on that page.
+
+**Conclusion**
+
+- From the available references, only **New Horizon College of Engineering** and **Ghousia College of Engineering** are explicitly identified.
+- The material does **not** provide a complete list of *all* engineering colleges in Bangalore. To obtain a full list, you would need to consult the full “Management Quota Fees For Engineering Colleges In Bangalore 2026” page or another comprehensive source on CareerMudhra.
+====================
