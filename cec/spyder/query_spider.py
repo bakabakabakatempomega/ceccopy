@@ -8,12 +8,12 @@ Location:
     CEC/spyder/query_spider.py
 
 Crawler:
-    CEC/spyder/cec_crawler_v2.py
+    CEC/spyder/cec_crawler_v3.py
 
 Temporary output:
     CEC/spyder/cec_temp_kb/<request_id>/
 
-All saved JSON files use schema_version 2.0.
+All saved JSON files use schema_version 3.0.
 
 Public API:
     search_and_crawl()
@@ -49,10 +49,9 @@ from bs4 import BeautifulSoup
 # -------------------------------------------------------------------
 
 try:
-    from .cec_crawler_v2 import create_session, extract_webpage
+    from .cec_crawler_v3 import create_session, extract_webpage
 except ImportError:
-    from cec_crawler_v2 import create_session, extract_webpage
-
+    from cec_crawler_v3 import create_session, extract_webpage
 
 # -------------------------------------------------------------------
 # Configuration
@@ -1172,61 +1171,56 @@ def _rank_search_results(
 # Page validation and saving
 # -------------------------------------------------------------------
 
+
 def _page_has_useful_content(page: dict) -> bool:
     """
-    Check whether the new-schema page contains useful extracted text.
+    Validate a schema 3.0 page.
+
+    Expected primary fields:
+        schema_version
+        title
+        subtitles
+        content
+        tables
     """
 
     if not isinstance(page, dict):
         return False
 
-    title = page.get(
-        "page_title",
-        ""
-    )
+    # Only accept the new crawler schema.
+    if page.get("schema_version") != "3.0":
+        return False
 
-    sections = page.get(
-        "sections",
-        []
-    )
+    title = page.get("title", "")
 
-    table_content = page.get(
-        "table_content",
-        {}
-    )
+    if not isinstance(title, str) or not title.strip():
+        return False
 
-    text_content = page.get(
-        "text_content",
-        {}
-    )
+    subtitles = page.get("subtitles", [])
+    content = page.get("content", {})
+    tables = page.get("tables", {})
 
-    tables = (
-        table_content.get("tables", [])
-        if isinstance(table_content, dict)
-        else []
-    )
+    # Validate the expected data types.
+    if not isinstance(subtitles, list):
+        return False
 
-    section_text = _flatten_text(sections)
-    table_text = _flatten_text(tables)
-    fallback_text = _flatten_text(text_content)
+    if not isinstance(content, dict):
+        return False
 
-    combined_text = (
-        _flatten_text(title)
-        + section_text
-        + table_text
-    )
+    if not isinstance(tables, (dict, list)):
+        return False
 
-    if not section_text and not table_text:
-        combined_text.extend(fallback_text)
+    # Collect readable text from the schema 3.0 fields.
+    readable_parts = []
 
-    readable_text = " ".join(
-        combined_text
-    ).strip()
+    readable_parts.extend(_flatten_text(title))
+    readable_parts.extend(_flatten_text(subtitles))
+    readable_parts.extend(_flatten_text(content))
+    readable_parts.extend(_flatten_text(tables))
 
-    return bool(
-        title
-        and len(readable_text) >= 100
-    )
+    readable_text = " ".join(readable_parts).strip()
+
+    return len(readable_text) >= 100
 
 
 def _save_page_json(
@@ -1572,9 +1566,10 @@ def search_and_crawl(
 
                     continue
 
-                if page.get("schema_version") != "2.0":
+                if page.get("schema_version") != "3.0":
 
                     result["errors"].append(
+                        f"Expected JSON schema: Ver3.0"
                         f"Unexpected JSON schema: {article_url}"
                     )
 
@@ -1600,7 +1595,7 @@ def search_and_crawl(
 
                 result["pages"].append({
 
-                    "title": page.get("page_title", ""),
+                    "title": page.get("title", ""),
 
                     "url": final_url,
 
@@ -1623,7 +1618,7 @@ def search_and_crawl(
 
                 logger.info(
                     "Successfully crawled: %s | relevance=%s | matches=%s",
-                    page.get("page_title", article_url),
+                    page.get("title", article_url),
                     candidate["relevance_score"],
                     candidate["matched_terms"]
                 )
