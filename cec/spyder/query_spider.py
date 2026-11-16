@@ -1572,7 +1572,7 @@ def search_and_crawl(
                         f"Expected JSON schema: Ver3.0"
                         f"Unexpected JSON schema: {article_url}"
                     )
-
+ 
                     continue
 
                 if not _page_has_useful_content(page):
