@@ -2,7 +2,9 @@
 """
 query_spider.py
 
-Search CareerMudhra and crawl relevant pages into temporary JSON files.
+Search CareerMudhra once, collect the top 10 website search results,
+rank those results using the existing relevance-ranking system,
+and crawl the top 3 relevant pages into temporary JSON files.
 
 Location:
     CEC/spyder/query_spider.py
@@ -31,13 +33,7 @@ import ipaddress
 
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from urllib.parse import (
-    urljoin,
-    urlparse,
-    urlunparse,
-    urlencode,
-    parse_qsl,
-)
+from urllib.parse import urljoin, urlparse, urlunparse, urlencode, parse_qsl
 from urllib.robotparser import RobotFileParser
 
 import requests
@@ -53,6 +49,7 @@ try:
 except ImportError:
     from cec_crawler_v3 import create_session, extract_webpage
 
+
 # -------------------------------------------------------------------
 # Configuration
 # -------------------------------------------------------------------
@@ -64,15 +61,17 @@ BASE_URL = "https://careermudhra.com/"
 SITE_HOST = "careermudhra.com"
 ROBOTS_URL = urljoin(BASE_URL, "robots.txt")
 
-DEFAULT_MAX_PAGES = 5
+DEFAULT_MAX_PAGES = 3
 DEFAULT_TIMEOUT = (10, 30)
 DEFAULT_DELAY_SECONDS = 1.0
 DEFAULT_MAX_HTML_BYTES = 5 * 1024 * 1024
 DEFAULT_STALE_HOURS = 2
 
-MAX_SEARCH_QUERIES = 5
-MAX_SEARCH_RESULTS_PER_QUERY = 40
-MAX_TOTAL_SEARCH_RESULTS = 150
+# Exactly 10 website search results are collected.
+MAX_SEARCH_RESULTS = 10
+
+# At most 3 relevant pages are crawled.
+MAX_CRAWL_PAGES = 3
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -87,9 +86,7 @@ def _utc_now() -> datetime:
 
 
 def _clean_query(value) -> str:
-    """
-    Convert strings, lists or other values into normalized text.
-    """
+    """Convert strings, lists or other values into normalized text."""
 
     if isinstance(value, (list, tuple, set)):
         value = " ".join(
@@ -106,12 +103,7 @@ def _clean_query(value) -> str:
 
 
 def _tokenize(value: str) -> set[str]:
-    """
-    Extract normalized words.
-
-    Common conversational words are removed.
-    Important college, course and fee-related words are retained.
-    """
+    """Extract normalized words and remove common conversational words."""
 
     stopwords = {
         "a", "an", "the", "of", "in", "at",
@@ -136,9 +128,7 @@ def _tokenize(value: str) -> set[str]:
 
 
 def _flatten_text(value) -> list[str]:
-    """
-    Recursively extract readable strings from nested JSON data.
-    """
+    """Recursively extract readable strings from nested JSON data."""
 
     if isinstance(value, str):
         text = value.strip()
@@ -186,13 +176,9 @@ def _prepare_query_data(query) -> dict:
     """
     Normalize query input for the ranking system.
 
-    Supports two input formats:
-
-    1. Dictionary returned by query_extractor.py.
-    2. Plain text entered directly into query_spider.py.
-
-    IMPORTANT:
-    Plain-text queries are no longer discarded.
+    Supports:
+        1. Dictionary returned by query_extractor.py.
+        2. Plain text entered directly.
     """
 
     if isinstance(query, dict):
@@ -204,6 +190,7 @@ def _prepare_query_data(query) -> dict:
 
             "search_query": _clean_query(
                 query.get("search_query")
+                or query.get("original_question")
             ),
 
             "college_names": [
@@ -248,7 +235,6 @@ def _prepare_query_data(query) -> dict:
             )
         }
 
-    # Plain-text input: preserve the actual query.
     raw_query = _clean_query(query)
 
     return {
@@ -270,84 +256,25 @@ def _prepare_query_data(query) -> dict:
 
 def _generate_search_queries(query) -> list[str]:
     """
-    Generate targeted CareerMudhra search queries.
+    Generate exactly one search query.
 
-    College-specific queries are prioritized.
+    The extracted search_query is preferred.
+    The original question is used as a fallback.
+
+    No additional searches are generated.
     """
 
     data = _prepare_query_data(query)
 
-    primary_query = data["search_query"]
-    original_question = data["original_question"]
+    search_query = (
+        data["search_query"]
+        or data["original_question"]
+        or data["raw_query"]
+    )
 
-    colleges = data["college_names"]
-    degrees = data["degree_names"]
-    fields = data["fields"]
-    requested_data = data["requested_data"]
-    locations = data["locations"]
-    keywords = data["keywords"]
+    search_query = _clean_query(search_query)
 
-    generated = []
-    seen = set()
-
-    def add(value):
-        value = _clean_query(value)
-
-        if not value:
-            return
-
-        normalized = value.casefold()
-
-        if normalized not in seen:
-            seen.add(normalized)
-            generated.append(value)
-
-    # 1. Primary extracted search query.
-    add(primary_query)
-
-    # 2. College-specific searches.
-    for college in colleges:
-
-        degree_part = " ".join(degrees)
-        field_part = " ".join(fields)
-        requested_part = " ".join(requested_data)
-        location_part = " ".join(locations)
-
-        add(
-            f"{college} {degree_part} {field_part}"
-        )
-
-        add(
-            f"{college} {field_part} {requested_part}"
-        )
-
-        add(
-            f"{college} {degree_part} {requested_part}"
-        )
-
-        add(
-            f"{college} {degree_part} {location_part}"
-        )
-
-        # The complete college name is important.
-        add(college)
-
-    # 3. Degree and specialization fallback.
-    if degrees or fields:
-        add(
-            f"{' '.join(degrees)} "
-            f"{' '.join(fields)} "
-            f"{' '.join(locations)}"
-        )
-
-    # 4. Keyword fallback.
-    if keywords:
-        add(" ".join(keywords[:8]))
-
-    # 5. Original question fallback.
-    add(original_question)
-
-    return generated[:MAX_SEARCH_QUERIES]
+    return [search_query] if search_query else []
 
 
 # -------------------------------------------------------------------
@@ -355,9 +282,7 @@ def _generate_search_queries(query) -> list[str]:
 # -------------------------------------------------------------------
 
 def _is_allowed_url(url: str) -> bool:
-    """
-    Permit only HTTPS URLs on careermudhra.com or its subdomains.
-    """
+    """Permit only HTTPS URLs on careermudhra.com or its subdomains."""
 
     try:
         parsed = urlparse(url)
@@ -392,9 +317,7 @@ def _is_allowed_url(url: str) -> bool:
 
 
 def _normalize_url(url: str) -> str:
-    """
-    Remove fragments and common tracking parameters.
-    """
+    """Remove fragments and common tracking parameters."""
 
     parsed = urlparse(url)
 
@@ -467,9 +390,7 @@ def _make_request_directory(
     ).resolve()
 
     if request_dir.parent != base_dir:
-        raise ValueError(
-            "Invalid temporary directory path."
-        )
+        raise ValueError("Invalid temporary directory path.")
 
     request_dir.mkdir(
         parents=True,
@@ -590,9 +511,7 @@ def _get_html(
                 f"Skipping non-HTML response: {content_type}"
             )
 
-        content_length = response.headers.get(
-            "Content-Length"
-        )
+        content_length = response.headers.get("Content-Length")
 
         if content_length:
             try:
@@ -601,9 +520,7 @@ def _get_html(
                         "HTML response exceeds the configured size limit."
                     )
             except (TypeError, ValueError) as exc:
-                if isinstance(exc, ValueError) and (
-                    "exceeds the configured size limit" in str(exc)
-                ):
+                if "exceeds the configured size limit" in str(exc):
                     raise
 
         chunks = []
@@ -700,10 +617,11 @@ def _is_probable_article_url(url: str) -> bool:
 def _extract_search_result_urls(
     html: str,
     search_page_url: str,
-    limit: int = 20
+    limit: int = MAX_SEARCH_RESULTS
 ) -> list[dict]:
     """
-    Extract likely article links and visible titles.
+    Extract the first 10 likely article links and their visible titles
+    from the CareerMudhra website search-results page.
     """
 
     soup = BeautifulSoup(
@@ -764,14 +682,10 @@ def _extract_search_result_urls(
             absolute_url
         )
 
-        if not _is_probable_article_url(
-            normalized_url
-        ):
+        if not _is_probable_article_url(normalized_url):
             continue
 
-        if normalized_url == _normalize_url(
-            search_page_url
-        ):
+        if normalized_url == _normalize_url(search_page_url):
             continue
 
         if normalized_url in seen_urls:
@@ -817,16 +731,7 @@ def _score_search_result(
     """
     Calculate search result relevance.
 
-    Dictionary input:
-        College name gets the highest weight.
-        Degree, field and requested information are also considered.
-
-    Plain-text input:
-        Meaningful query words are matched individually.
-        Distinctive words receive greater weight than generic words.
-
-    This fixes the previous bug where plain-text queries were
-    converted into an empty dictionary and all scores became zero.
+    Existing ranking weights are preserved.
     """
 
     data = _prepare_query_data(query_data)
@@ -839,10 +744,13 @@ def _score_search_result(
         candidate.get("url")
     )
 
-    # Include title and URL path in the matching text.
     parsed_url = urlparse(url)
 
-    url_text = parsed_url.path.replace("-", " ").replace("/", " ")
+    url_text = (
+        parsed_url.path
+        .replace("-", " ")
+        .replace("/", " ")
+    )
 
     searchable_text = (
         title + " " + url_text
@@ -873,10 +781,8 @@ def _score_search_result(
             continue
 
         college_tokens = _tokenize(college)
-
         normalized_college = college.casefold()
 
-        # Full college phrase match.
         if normalized_college in searchable_text:
 
             score += 120
@@ -894,7 +800,6 @@ def _score_search_result(
                 / len(college_tokens)
             )
 
-            # Partial college-name match.
             if coverage >= 0.5:
 
                 score += int(90 * coverage)
@@ -991,9 +896,7 @@ def _score_search_result(
                 item_tokens & result_tokens
             )
 
-            score += (
-                8 * len(matching_tokens)
-            )
+            score += 8 * len(matching_tokens)
 
     # ---------------------------------------------------------------
     # 5. Location matching
@@ -1036,8 +939,6 @@ def _score_search_result(
 
         query_tokens = _tokenize(raw_query)
 
-        # Distinctive terms carry more weight.
-        # Generic words such as "college" and "fees" carry less.
         generic_tokens = {
             "college",
             "colleges",
@@ -1065,7 +966,6 @@ def _score_search_result(
                 "point",
                 "radiology",
                 "radiodiagnosis",
-                "radiodiagnosis",
                 "nri",
                 "management",
                 "quota"
@@ -1089,7 +989,6 @@ def _score_search_result(
 
             matched_terms.append(token)
 
-        # Give a small additional boost to a contiguous phrase match.
         normalized_query = re.sub(
             r"[^a-z0-9]+",
             " ",
@@ -1126,7 +1025,6 @@ def _score_search_result(
         12
     )
 
-    # Remove duplicate matched terms.
     matched_terms = list(dict.fromkeys(matched_terms))
 
     return score, matched_terms
@@ -1136,9 +1034,7 @@ def _rank_search_results(
     candidates: list[dict],
     query_data
 ) -> list[dict]:
-    """
-    Rank search results from most to least relevant.
-    """
+    """Rank the collected search results from most to least relevant."""
 
     ranked = []
 
@@ -1171,7 +1067,6 @@ def _rank_search_results(
 # Page validation and saving
 # -------------------------------------------------------------------
 
-
 def _page_has_useful_content(page: dict) -> bool:
     """
     Validate a schema 3.0 page.
@@ -1187,7 +1082,6 @@ def _page_has_useful_content(page: dict) -> bool:
     if not isinstance(page, dict):
         return False
 
-    # Only accept the new crawler schema.
     if page.get("schema_version") != "3.0":
         return False
 
@@ -1200,7 +1094,6 @@ def _page_has_useful_content(page: dict) -> bool:
     content = page.get("content", {})
     tables = page.get("tables", {})
 
-    # Validate the expected data types.
     if not isinstance(subtitles, list):
         return False
 
@@ -1210,7 +1103,6 @@ def _page_has_useful_content(page: dict) -> bool:
     if not isinstance(tables, (dict, list)):
         return False
 
-    # Collect readable text from the schema 3.0 fields.
     readable_parts = []
 
     readable_parts.extend(_flatten_text(title))
@@ -1260,8 +1152,16 @@ def search_and_crawl(
     delay_seconds: float = DEFAULT_DELAY_SECONDS
 ) -> dict:
     """
-    Search CareerMudhra using targeted queries,
-    rank the results, and crawl the most relevant pages.
+    Search CareerMudhra exactly once.
+
+    Workflow:
+
+        1. Prepare one search query.
+        2. Search the CareerMudhra website.
+        3. Collect the first 10 search results.
+        4. Rank those 10 results using the existing ranking system.
+        5. Crawl the top 3 relevant pages.
+        6. Save successfully crawled pages as JSON.
 
     Accepts:
         Plain search string
@@ -1273,7 +1173,7 @@ def search_and_crawl(
 
     query_data = _prepare_query_data(query)
 
-    search_queries = _generate_search_queries(query)
+    search_queries = _generate_search_queries(query_data)
 
     if not search_queries:
         raise ValueError(
@@ -1289,7 +1189,11 @@ def search_and_crawl(
             "max_pages must be a positive integer."
         )
 
-    max_pages = min(max_pages, 10)
+    # Never crawl more than 3 pages.
+    max_pages = min(
+        max_pages,
+        MAX_CRAWL_PAGES
+    )
 
     delay_seconds = max(
         0.0,
@@ -1306,6 +1210,8 @@ def search_and_crawl(
         "search_url": "",
         "search_urls": [],
         "search_queries": search_queries,
+        "search_results": [],
+        "ranked_results": [],
         "files": [],
         "pages": [],
         "errors": []
@@ -1315,155 +1221,96 @@ def search_and_crawl(
 
     try:
 
-        # --------------------------------------------------------
+        # ------------------------------------------------------------
         # Step 1: Check robots.txt
-        # --------------------------------------------------------
+        # ------------------------------------------------------------
 
         robots = _load_robots(
             session,
             timeout=timeout
         )
 
-        # --------------------------------------------------------
-        # Step 2: Execute searches
-        # --------------------------------------------------------
+        # ------------------------------------------------------------
+        # Step 2: Search the website ONCE
+        # ------------------------------------------------------------
 
-        candidates_by_url = {}
+        search_query = search_queries[0]
 
-        for search_index, search_query in enumerate(
-            search_queries,
-            start=1
+        search_url = urljoin(
+            BASE_URL,
+            "?" + urlencode({
+                "s": search_query
+            })
+        )
+
+        result["search_url"] = search_url
+
+        if not _robots_allows(
+            robots,
+            search_url,
+            session
         ):
 
-            search_url = urljoin(
-                BASE_URL,
-                "?" + urlencode({
-                    "s": search_query
-                })
+            result["errors"].append(
+                f"robots.txt does not allow search: {search_url}"
             )
 
-            if not result["search_url"]:
-                result["search_url"] = search_url
+            return result
 
-            if not _robots_allows(
-                robots,
-                search_url,
-                session
-            ):
-
-                result["errors"].append(
-                    f"robots.txt does not allow search: {search_url}"
-                )
-
-                continue
-
-            try:
-
-                search_html, search_final_url, _ = _get_html(
-                    session,
-                    search_url,
-                    timeout=timeout
-                )
-
-                result["search_urls"].append(
-                    search_final_url
-                )
-
-                search_results = _extract_search_result_urls(
-                    search_html,
-                    search_final_url,
-                    limit=MAX_SEARCH_RESULTS_PER_QUERY
-                )
-
-                for candidate in search_results:
-
-                    candidate_url = candidate["url"]
-
-                    if candidate_url not in candidates_by_url:
-
-                        candidate["search_queries"] = [
-                            search_query
-                        ]
-
-                        candidates_by_url[candidate_url] = candidate
-
-                    else:
-
-                        existing = candidates_by_url[
-                            candidate_url
-                        ]
-
-                        existing["search_hits"] = (
-                            existing.get("search_hits", 1) + 1
-                        )
-
-                        existing.setdefault(
-                            "search_queries",
-                            []
-                        ).append(search_query)
-
-                        if (
-                            not existing.get("title")
-                            and candidate.get("title")
-                        ):
-                            existing["title"] = candidate["title"]
-
-                logger.info(
-                    "Search %s/%s completed: '%s' | results=%s",
-                    search_index,
-                    len(search_queries),
-                    search_query,
-                    len(search_results)
-                )
-
-            except Exception as exc:
-
-                logger.warning(
-                    "Search failed for '%s': %s",
-                    search_query,
-                    exc
-                )
-
-                result["errors"].append(
-                    f"Search failed for '{search_query}': {str(exc)}"
-                )
-
-            if delay_seconds:
-                time.sleep(delay_seconds)
-
-            if len(candidates_by_url) >= MAX_TOTAL_SEARCH_RESULTS:
-
-                logger.info(
-                    "Reached the maximum collected search-result limit."
-                )
-
-                break
-
-        # --------------------------------------------------------
-        # Step 3: Rank collected results
-        # --------------------------------------------------------
-
-        candidates = list(
-            candidates_by_url.values()
+        logger.info(
+            "Searching CareerMudhra once: '%s'",
+            search_query
         )
+
+        search_html, search_final_url, _ = _get_html(
+            session,
+            search_url,
+            timeout=timeout
+        )
+
+        result["search_urls"].append(
+            search_final_url
+        )
+
+        if delay_seconds:
+            time.sleep(delay_seconds)
+
+        # ------------------------------------------------------------
+        # Step 3: Collect the top 10 website search results
+        # ------------------------------------------------------------
+
+        candidates = _extract_search_result_urls(
+            search_html,
+            search_final_url,
+            limit=MAX_SEARCH_RESULTS
+        )
+
+        logger.info(
+            "Collected %s search results (maximum %s).",
+            len(candidates),
+            MAX_SEARCH_RESULTS
+        )
+
+        result["search_results"] = candidates
 
         if not candidates:
 
             result["errors"].append(
-                "No likely article URLs were found across the search queries."
+                "No likely article URLs were found on the search-results page."
             )
 
             return result
+
+        # ------------------------------------------------------------
+        # Step 4: Rank the 10 results using the existing ranking system
+        # ------------------------------------------------------------
 
         ranked_candidates = _rank_search_results(
             candidates,
             query_data
         )
 
-        logger.info(
-            "Collected %s unique search results.",
-            len(ranked_candidates)
-        )
+        result["ranked_results"] = ranked_candidates
 
         logger.info(
             "Ranking query data: %s",
@@ -1473,37 +1320,43 @@ def search_and_crawl(
                     "degree_names": query_data["degree_names"],
                     "fields": query_data["fields"],
                     "requested_data": query_data["requested_data"],
+                    "locations": query_data["locations"],
                     "raw_query": query_data["raw_query"]
                 },
                 ensure_ascii=False
             )
         )
 
-        logger.info("Top search-result rankings:")
+        logger.info("Ranked search results:")
 
-        for candidate in ranked_candidates[:15]:
+        for rank, candidate in enumerate(
+            ranked_candidates,
+            start=1
+        ):
 
             logger.info(
-                "Score=%s | Matches=%s | Hits=%s | Title=%s | URL=%s",
+                "Rank=%s | Score=%s | Matches=%s | Title=%s | URL=%s",
+                rank,
                 candidate["relevance_score"],
                 candidate["matched_terms"],
-                candidate.get("search_hits", 1),
                 candidate.get("title", ""),
                 candidate.get("url", "")
             )
 
-        # --------------------------------------------------------
-        # Step 4: Crawl the highest-ranked results
-        # --------------------------------------------------------
+        # ------------------------------------------------------------
+        # Step 5: Crawl the top 3 relevant results
+        # ------------------------------------------------------------
 
-        for candidate in ranked_candidates:
+        for rank, candidate in enumerate(
+            ranked_candidates,
+            start=1
+        ):
 
             if len(result["pages"]) >= max_pages:
                 break
 
             article_url = candidate["url"]
 
-            # Skip candidates with no meaningful relevance.
             if candidate["relevance_score"] <= 0:
 
                 logger.info(
@@ -1569,10 +1422,9 @@ def search_and_crawl(
                 if page.get("schema_version") != "3.0":
 
                     result["errors"].append(
-                        f"Expected JSON schema: Ver3.0"
-                        f"Unexpected JSON schema: {article_url}"
+                        f"Unexpected JSON schema for: {article_url}"
                     )
- 
+
                     continue
 
                 if not _page_has_useful_content(page):
@@ -1601,6 +1453,8 @@ def search_and_crawl(
 
                     "file": str(file_path),
 
+                    "search_rank": rank,
+
                     "relevance_score": candidate[
                         "relevance_score"
                     ],
@@ -1617,8 +1471,9 @@ def search_and_crawl(
                 })
 
                 logger.info(
-                    "Successfully crawled: %s | relevance=%s | matches=%s",
+                    "Successfully crawled: %s | search_rank=%s | relevance=%s | matches=%s",
                     page.get("title", article_url),
+                    rank,
                     candidate["relevance_score"],
                     candidate["matched_terms"]
                 )
@@ -1634,6 +1489,14 @@ def search_and_crawl(
                 result["errors"].append(
                     f"Failed to crawl {article_url}: {str(exc)}"
                 )
+
+        logger.info(
+            "Search and crawl completed: "
+            "search_results=%s | ranked_results=%s | crawled_pages=%s",
+            len(result["search_results"]),
+            len(result["ranked_results"]),
+            len(result["pages"])
+        )
 
         return result
 
@@ -1656,9 +1519,7 @@ def search_and_crawl(
 # -------------------------------------------------------------------
 
 def cleanup_request(request_id: str) -> bool:
-    """
-    Delete one request's temporary directory.
-    """
+    """Delete one request's temporary directory."""
 
     if not re.fullmatch(
         r"[A-Za-z0-9_-]{1,80}",
@@ -1695,9 +1556,7 @@ def cleanup_request(request_id: str) -> bool:
 def cleanup_stale_temp(
     max_age_hours: int = DEFAULT_STALE_HOURS
 ) -> int:
-    """
-    Remove abandoned request folders older than max_age_hours.
-    """
+    """Remove abandoned request folders older than max_age_hours."""
 
     TEMP_KB_DIR.mkdir(
         parents=True,
