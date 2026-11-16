@@ -58,7 +58,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # Maximum number of CareerMudhra pages retrieved per query.
-MAX_PAGES_PER_QUERY = 1
+MAX_PAGES_PER_QUERY = 3
 
 # Maximum combined reference context supplied to Groq.
 MAX_CONTEXT_CHARS = 18000
